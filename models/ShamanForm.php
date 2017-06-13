@@ -20,6 +20,7 @@ class ShamanForm extends Model
     public $curlname;
     public $token;
     public $secretKey;
+    public $decodedKey;
     public $roleName;
     public $errorMessage;
 

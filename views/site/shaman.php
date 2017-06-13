@@ -60,6 +60,9 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php if ($model->secretKey): ?>
         <li><label>Secret Key</label>: <?= Html::encode($model->secretKey) ?></li>
     <?php endif; ?>
+    <?php if ($model->decodedKey): ?>
+        <li><label>Decoded Secret Key</label>: <?= Html::encode($model->decodedKey) ?></li>
+    <?php endif; ?>
     <?php endif; ?>    
     <?php Pjax::end(); ?>
         

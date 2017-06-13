@@ -62,7 +62,7 @@ class SiteController extends Controller
      *
      * @return string
      */
-    public function actionIndex()
+    public function actionIndexOrg()
     {
         return $this->render('index');
     }
@@ -132,7 +132,7 @@ class SiteController extends Controller
      *
      * @return string
      */
-    public function actionShaman()
+    public function actionIndex()
     {
         $model = new ShamanForm();
         $model->load(Yii::$app->request->post());
@@ -165,10 +165,15 @@ class SiteController extends Controller
                 $model->name = $response->data['name'];
                 $model->email = $response->data['email'];
                 $model->secretKey = $response->data['secretKey'];
+                $model->decodedKey = base64_decode($response->data['secretKey']);
                 $model->id = $response->data['id'];
                 $model->roleName = $response->data['role']['name'];
             } elseif (!$model->errorMessage && $response->data['message']) {
                 $model->errorMessage = $response->data['message'];
+            }
+            if ($model->errorMessage) {
+                $model->errorMessage = "[{$response->data['status']} " . 
+                        " {$response->data['name']}] " . $model->errorMessage;
             }
         }
         
